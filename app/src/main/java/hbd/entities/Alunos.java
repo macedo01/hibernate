@@ -6,7 +6,7 @@ import java.util.Date;
 import java.util.UUID;
 
 @Entity
-@Table(name = "tbl_alunos")
+@Table(name = "alunos")
 public class Alunos {
 
     @Id
@@ -14,13 +14,13 @@ public class Alunos {
     @Column(name = "aluno_id")
     private UUID id;
 
-    @Column(name = "aluno_nome", length = 100)
+    @Column(name = "nome_aluno", length = 100)
     private String nome;
 
-    @Column(name = "aluno_data_nascimento")
+    @Column(name = "data_nascimento")
     private Date Date;
 
-    @Column(name = "aluno_cidade_natal", length = 50)
+    @Column(name = "cidade_natal", length = 50)
     private String cidadeNatal;
 
     public Alunos(String nome, Date date, String cidadeNatal) {

@@ -11,7 +11,7 @@ public class Matriculas {
 
     @Id
     @GeneratedValue //nao lembro se precisa disso aq pq eu troquei para UUID
-    @Column(name = "matricula_id")
+    @Column(name = "id_matricula")
     private UUID id;
 
     @ManyToOne
@@ -22,6 +22,6 @@ public class Matriculas {
     @JoinColumn(name = "id_disciplina")
     private Disciplinas disciplina;
 
-    @Column(name = "disciplina_data_matricula")
+    @Column(name = "data_matricula")
     private String Date;
 }

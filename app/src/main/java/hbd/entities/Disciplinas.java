@@ -10,9 +10,9 @@ public class Disciplinas {
 
     @Id
     @GeneratedValue //nao lembro se precisa disso aq pq eu troquei para UUID
-    @Column(name = "disciplina_id")
+    @Column(name = "id_disciplina")
     private UUID id;
 
-    @Column(name = "disciplina_nome", length = 100)
+    @Column(name = "nome_disciplina", length = 100)
     private String nome;
 }

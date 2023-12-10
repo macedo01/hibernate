@@ -6,6 +6,8 @@ import java.util.Date;
 import java.util.List;
 
 import hbd.entities.Alunos;
+import hbd.entities.Disciplinas;
+import hbd.entities.Matriculas;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
@@ -22,11 +24,13 @@ public class App {
         try {
             SessionFactory sessionFactory = new MetadataSources(registry)
                     .addAnnotatedClass(Alunos.class)
+                    .addAnnotatedClass(Disciplinas.class)
+                    .addAnnotatedClass(Matriculas.class)
                     .buildMetadata()
                     .buildSessionFactory();
-            sessionFactory.inTransaction(session -> {
-                session.persist(new Alunos("Matheus Barreto", new Date(), "Salvador"));
-            });
+//            sessionFactory.inTransaction(session -> {
+//                session.persist(new Alunos("Matheus Barreto", new Date(), "Salvador"));
+//            });
 //            UPDATE
             sessionFactory.inTransaction(
                     session -> {
@@ -42,6 +46,14 @@ public class App {
                             System.out.println("Nome:" + alunoObj[0]+ ", data de nascimneto: " + alunoObj[1]);
                         }
 
+                    }
+            );
+
+            sessionFactory.inTransaction(
+                    session -> {
+                        Long totalAlunosMatriculados = session.createQuery("SELECT COUNT(DISTINCT m.aluno) FROM Matriculas m", Long.class)
+                                .getSingleResult();
+                        System.out.println("Alunos Matriculados: " + totalAlunosMatriculados);
                     }
             );
 
