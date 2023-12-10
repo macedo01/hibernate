@@ -1,10 +1,9 @@
 package hbd.entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.util.UUID;
+
 
 @Entity
 @Table(name = "matriculas")
@@ -17,11 +16,11 @@ public class Matriculas {
 
     @ManyToOne
     @JoinColumn(name = "id_aluno")
-    private Aluno aluno;
+    private Alunos aluno;
 
     @ManyToOne
     @JoinColumn(name = "id_disciplina")
-    private Disciplina disciplina;
+    private Disciplinas disciplina;
 
     @Column(name = "disciplina_data_matricula")
     private String Date;

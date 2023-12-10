@@ -12,7 +12,6 @@ import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.w3c.dom.events.Event;
 
-import hbd.entities.Item;
 
 public class App {
 
@@ -28,29 +27,24 @@ public class App {
             sessionFactory.inTransaction(session -> {
                 session.persist(new Alunos("Matheus Barreto", new Date(), "Salvador"));
             });
-//            sessionFactory.inTransaction(session -> {
-//                List<Item> itens = session.createQuery("from Item", Item.class).getResultList();
-//                System.out.println("Itens Encontrados:");
-//                itens.forEach(Item::print);
-//                System.out.println("Total de itens: " + itens.size());
-//            });
-//            List<Item> itensARemover = new ArrayList<>();
-//            sessionFactory.inTransaction(session -> {
-//                System.out.println("Procurando Segundo Evento:");
-//                itensARemover.addAll(session
-//                        .createNativeQuery("SELECT * FROM tbl_item WHERE it_titulo = :titulo_procurar", Item.class)
-//                        .setParameter("titulo_procurar", "Segundo Evento").getResultList());
-//                itensARemover.forEach(Item::print);
-//            });
-//            sessionFactory.inTransaction(session -> {
-//                System.out.println("Excluindo Segundo Evento:");
-//                Item itemARemover = session.get(Item.class, itensARemover.get(0).getId());
-//                session.delete(itemARemover);
-//            });
-//            sessionFactory.inTransaction(session -> {
-//                long total = (long) session.createQuery("select count(*) from Item", Long.class).uniqueResult();
-//                System.out.println("Total de Itens: " + total);
-//            });
+//            UPDATE
+            sessionFactory.inTransaction(
+                    session -> {
+                        Alunos aluno = session.createQuery("from Alunos", Alunos.class ).setMaxResults(1).getSingleResult();
+                        aluno.setNome("Jose");
+                        session.merge(aluno);
+                    }
+            );
+            sessionFactory.inTransaction(
+                    session -> {
+                        List<Object[]> alunos = session.createQuery("SELECT nome, Date from Alunos ", Object[].class).getResultList();
+                        for ( Object[] alunoObj : alunos ){
+                            System.out.println("Nome:" + alunoObj[0]+ ", data de nascimneto: " + alunoObj[1]);
+                        }
+
+                    }
+            );
+
         } catch (Exception e) {
             StandardServiceRegistryBuilder.destroy(registry);
             e.printStackTrace();

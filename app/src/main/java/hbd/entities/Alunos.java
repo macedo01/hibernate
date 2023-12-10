@@ -28,4 +28,16 @@ public class Alunos {
         Date = date;
         this.cidadeNatal = cidadeNatal;
     }
+    public Alunos() {
+
+    }
+
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
 }
