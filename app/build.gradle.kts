@@ -25,6 +25,7 @@ dependencies {
     implementation("org.hibernate.orm:hibernate-core:6.4.0.Final")
     implementation("jakarta.transaction:jakarta.transaction-api")
     implementation("com.h2database:h2:1.4.200")
+    runtimeOnly("org.postgresql:postgresql:42.2.14")
 }
 
 // Apply a specific Java toolchain to ease working on different environments.

@@ -2,6 +2,7 @@ package hbd.entities;
 
 import jakarta.persistence.*;
 
+import java.util.Date;
 import java.util.UUID;
 
 @Entity
@@ -17,8 +18,14 @@ public class Alunos {
     private String nome;
 
     @Column(name = "aluno_data_nascimento")
-    private String Date;
+    private Date Date;
 
     @Column(name = "aluno_cidade_natal", length = 50)
     private String cidadeNatal;
+
+    public Alunos(String nome, Date date, String cidadeNatal) {
+        this.nome = nome;
+        Date = date;
+        this.cidadeNatal = cidadeNatal;
+    }
 }
