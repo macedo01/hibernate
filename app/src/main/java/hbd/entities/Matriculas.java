@@ -6,6 +6,8 @@ import jakarta.persistence.Id;
 
 import java.util.UUID;
 
+@Entity
+@Table(name = "matriculas")
 public class Matriculas {
 
     @Id
@@ -13,8 +15,14 @@ public class Matriculas {
     @Column(name = "matricula_id")
     private UUID id;
 
-    private UUID idAluno;
-    private UUID idDisciplina;
+    @ManyToOne
+    @JoinColumn(name = "id_aluno")
+    private Aluno aluno;
+
+    @ManyToOne
+    @JoinColumn(name = "id_disciplina")
+    private Disciplina disciplina;
+
     @Column(name = "disciplina_data_matricula")
     private String Date;
 }

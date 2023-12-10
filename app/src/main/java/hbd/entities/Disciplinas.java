@@ -6,6 +6,8 @@ import jakarta.persistence.Id;
 
 import java.util.UUID;
 
+@Entity
+@Table(name = "disciplinas")
 public class Disciplinas {
 
     @Id
